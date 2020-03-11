@@ -9,7 +9,7 @@ library(rgdal)
 library(tools)
 
 # 1. loading shapefile w/ municipalities of the BHRD ####
-muni <- readOGR("data/munic_BHRD/munic_BHRD.shp")
+muni <- readOGR("data/munic_BHRD/munic_BHRD.shp", encoding = "UTF-8")
 nomes_muni <- data.frame(muni = toTitleCase(as.character(muni@data$NOMEMUNICP)),
                          uf = toTitleCase(as.character(muni@data$NOMEUF)))
 
@@ -24,13 +24,13 @@ nomes_muni$uf2 <- ifelse(nomes_muni$uf == "MINAS GERAIS", "MG", "ES")
 sp_muni <- list()
 
 for (i in 1:nrow(nomes_muni)) {
-sp_muni[[i]] <- rspeciesLink(dir = "results/splink_raw/",
-                             filename = paste(nomes_muni$muni2[i],
-                                              nomes_muni$uf2[i],
-                                              sep = "_"),
-                             county = nomes_muni$muni[i],
-                             stateProvince = nomes_muni$uf[i],
-                             Scope = "plants")
+  sp_muni[[i]] <- rspeciesLink(dir = "results/splink_raw/",
+                               filename = paste(nomes_muni$muni2[i],
+                                                nomes_muni$uf2[i],
+                                                sep = "_"),
+                               county = nomes_muni$muni[i],
+                               stateProvince = nomes_muni$uf[i],
+                               Scope = "plants")
 }
 
 # alguns vazios e vem indet

@@ -6,19 +6,31 @@
 
 library(rocc)
 library(rgdal)
+library(tools)
 
-# loading shapefile w/ municipalities
+# 1. loading shapefile w/ municipalities of the BHRD ####
 muni <- readOGR("data/munic_BHRD/munic_BHRD.shp")
-nomes_muni <- data.frame(muni = as.character(muni@data$NOMEMUNICP),
-                         uf = as.character(muni@data$NOMEUF))
+nomes_muni <- data.frame(muni = toTitleCase(as.character(muni@data$NOMEMUNICP)),
+                         uf = toTitleCase(as.character(muni@data$NOMEUF)))
 
-# using rspeciesLink function
+# converting again to character :P
+nomes_muni$muni <- as.character(nomes_muni$muni)
+nomes_muni$uf <- as.character(nomes_muni$uf)
+# creating names to print in files' name
+nomes_muni$muni2 <- gsub(" ", "_", nomes_muni$muni)
+nomes_muni$uf2 <- ifelse(nomes_muni$uf == "MINAS GERAIS", "MG", "ES")
+
+# 2. using rspeciesLink function ####
 sp_muni <- list()
 
-for (i in 1:10) {
-  sp_muni[[i]] <- rspeciesLink(filename = paste(nomes_muni$muni[i],
-                                                nomes_muni$uf[i],
-                                                sep = "_"),
-                               county = nomes_muni$muni[i],
-                               stateProvince = nomes_muni$uf[i])
+for (i in 1:nrow(nomes_muni)) {
+sp_muni[[i]] <- rspeciesLink(dir = "results/splink_raw/",
+                             filename = paste(nomes_muni$muni2[i],
+                                              nomes_muni$uf2[i],
+                                              sep = "_"),
+                             county = nomes_muni$muni[i],
+                             stateProvince = nomes_muni$uf[i],
+                             Scope = "plants")
 }
+
+# alguns vazios e vem indet

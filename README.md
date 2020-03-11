@@ -13,3 +13,5 @@ Download species that occur in the BHRD in steps:
 - [ ] Taxonomic cleaning
 
 - [ ] Geographic cleaning
+
+:heavy_check_mark: bla

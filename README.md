@@ -2,14 +2,14 @@
 
 Download species that occur in the BHRD in steps:
 
-1. Download from speciesLink all plant species that occurr in the municipalities inside the BHRD [x]
+- [x] Download from speciesLink all plant species that occurr in the municipalities inside the BHRD
 
-2. Check empty outputs [ ]
+- [ ] Check empty outputs
 
-3. Clean taxonomic names to generate list [ ]  
+- [ ] Clean taxonomic names to generate list
 
-4. Download from speciesLink, jabot and gbif all records from species generated in step one [ ]
+- [ ] Download from speciesLink, jabot and gbif all records from species generated in step one 
 
-5. Taxonomic cleaning [ ]
+- [ ] Taxonomic cleaning
 
-6. Geographic cleaning [ ]
+- [ ] Geographic cleaning

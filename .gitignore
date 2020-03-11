@@ -5,3 +5,6 @@
 
 #linux files
 .~lock*
+
+#files too large for github
+clean_data.csv

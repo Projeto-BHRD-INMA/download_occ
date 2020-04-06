@@ -1,35 +1,36 @@
 # Script to test taxonomy before downloading data
 
+# using rooc, to install:
+# remotes::install_github("saramortara/rocc")
+
 # loading packages
-library(taxize)
-library(flora)
-library(stringr)
+library(rocc)
 
 # loading data
 tax <- read.csv("results/03_taxon_data_raw.csv")
 
-head(tax)
+check <- check_status(scientificName = tax$scientificName)
 
-a <- str_split(tax$genus, " ")
-b <- str_split(tax$specificEpithet, " ")
-sum(sapply(a, length) > 1)
-gen_check <- a[sapply(a, length) > 1]
-sp_check <- b[sapply(b, length) > 1]
-gen_check
+table(check$scientificName_status)
 
-head(a)
+# vamos ficar com: possibly_ok, subspecies, variety, name_w_authors
+check$check_ok <- ifelse(tax_check$scientificName_status
+                         %in% c("possibly_ok",
+                                "subspecies",
+                                "variety",
+                                "name_w_authors"),
+                         TRUE,
+                         FALSE)
 
-tax[23, ]
+# e agora juntando com o objeto inicial
+tax_check <- cbind(tax, check[, -1])
 
-species <- unique(tax$scientificName)[1:200]
+head(tax_check)
 
-# 1. Flora Check ####
-flora <- get.taxa(species)
+str(tax_check)
 
-table(flora$taxon.status)
-
-flora[is.na(flora$taxon.status), ]
-flora[23, ]
-
-species[23]
-
+# exportando os dados depois do check
+# write outputs
+write.csv(tax_check,
+          file = "results/04_taxon_data_raw_check.csv",
+          row.names = FALSE)

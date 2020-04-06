@@ -26,6 +26,7 @@ teste <- rspeciesLink(county = "Capitão Andrade",
 unlink("results/output.csv")
 
 # ultimo teste com pingo d'agua, tem!
+## fazendo de novo a requisicao
 teste <- rspeciesLink(dir = "results/splink_raw/",
                       filename = "PINGO_DAGUA_MG",
                       county = "Pingo D agua",

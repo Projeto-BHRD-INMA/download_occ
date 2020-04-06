@@ -40,5 +40,5 @@ plants_nodup$id_name <- paste("name",
 
 # write outputs
 write.csv(plants_nodup,
-          file = "./results/taxon_data_raw.csv",
+          file = "./results/03_taxon_data_raw.csv",
           row.names = FALSE)

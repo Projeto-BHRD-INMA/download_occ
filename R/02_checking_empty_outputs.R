@@ -1,7 +1,6 @@
 # Checking empty outputs from rspeciesLink function
 
 library(data.table)
-library(rocc)
 library(stringr)
 
 # which ones are empty?
@@ -24,14 +23,3 @@ teste <- rspeciesLink(county = "Capitão Andrade",
 
 # apagando o arquivo
 unlink("results/output.csv")
-
-# ultimo teste com pingo d'agua, tem!
-## fazendo de novo a requisicao
-teste <- rspeciesLink(dir = "results/splink_raw/",
-                      filename = "PINGO_DAGUA_MG",
-                      county = "Pingo D agua",
-                      stateProvince = "MG",
-                      Scope = "plants")
-
-# vamos apagar o arquivo vazio entao
-unlink("results/splink_raw/PINGO_D'AGUA_MG.csv")

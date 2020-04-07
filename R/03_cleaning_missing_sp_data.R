@@ -29,7 +29,6 @@ clean_taxon_data <- clean_data[, c("kingdom", "phylum",
                                    "genus", "specificEpithet",
                                    "scientificName", "scientificNameAuthorship")]
 
-# even selecting only plants, there are other kingdoms, selecting only plants
 plants <- clean_taxon_data[clean_taxon_data$kingdom %in% "Plantae", ]
 
 # excluding duplicated names

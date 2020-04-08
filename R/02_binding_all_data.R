@@ -1,6 +1,6 @@
 #----------------------------------------------------
 # Script to check downloaded files and bind all data
-## Checking common errors in species names
+## Checking files
 ## Binding all data and exporting file
 #----------------------------------------------------
 
@@ -8,6 +8,8 @@ library(data.table)
 library(stringr)
 library(tools)
 library(dplyr)
+
+# 1. Checking files ####
 
 # which ones are empty?
 file_names <- list.files("results/splink_raw", full.names = TRUE)
@@ -30,7 +32,7 @@ sao %in% empty # alguns sim, outros não. não é problema do acento!
 # # apagando o arquivo
 # unlink("results/output.csv")
 
-# Combining all records in a single table, except empty ones
+# 2. Combining all records in a single table, except empty ones ####
 id1 <- which(sapply(all_files, nrow) != 1)
 data_filenames <- file_names[id1]
 data_files <- lapply(data_filenames, fread)

@@ -1,8 +1,8 @@
 # ------------------------------------------------------------------------------
 # Script to download species that occur in the municipalities inside the BHRD
-# the goal is to get the species list for the BHRD.
-# Need to clean names -- in the folowing scrips
-# here, just the download of raw data
+## the goal is to get the species list for the BHRD.
+## Need to clean names -- in the folowing scrips
+## here, just the download of raw data
 # -------------------------------------------------------------------------------
 
 # install package rocc

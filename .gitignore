@@ -8,3 +8,6 @@
 
 #files too large for github
 clean_data.csv
+
+#local files
+test.R

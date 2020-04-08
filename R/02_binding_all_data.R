@@ -1,4 +1,8 @@
-# Checking common errors in species names
+#----------------------------------------------------
+# Script to check downloaded files and bind all data
+## Checking common errors in species names
+## Binding all data and exporting file
+#----------------------------------------------------
 
 library(data.table)
 library(stringr)
@@ -19,12 +23,12 @@ sao <- file_names[str_detect(file_names, "SAO_")]
 sao %in% empty # alguns sim, outros não. não é problema do acento!
 
 # teste de busca de um municipio vazio com acento
-teste <- rspeciesLink(county = "Capitão Andrade",
-                      stateProvince = "MG",
-                      Scope = "plants")
-
-# apagando o arquivo
-unlink("results/output.csv")
+# teste <- rspeciesLink(county = "Capitão Andrade",
+#                       stateProvince = "MG",
+#                       Scope = "plants")
+#
+# # apagando o arquivo
+# unlink("results/output.csv")
 
 # Combining all records in a single table, except empty ones
 id1 <- which(sapply(all_files, nrow) != 1)

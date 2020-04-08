@@ -1,8 +1,8 @@
-# Script to test taxonomy before downloading data
-# Check taxonomy errors, synonyms at flora2020 and other databases
-
+#------------------------------------------------------
+# Script to check species names, just raw string check
 # using rocc, to install:
 # remotes::install_github("saramortara/rocc")
+#------------------------------------------------------
 
 # loading packages
 library(rocc)

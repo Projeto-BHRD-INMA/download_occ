@@ -10,8 +10,8 @@ library(rocc)
 # loading data
 tax <- read.csv("results/02_taxon_data_raw.csv")
 
-# 1. using rocc::check_status()
-check <- check_status(scientificName = tax$scientificName)
+# 1. using rocc::check_string()
+check <- check_string(scientificName = tax$scientificName)
 
 table(check$scientificName_status)
 

@@ -8,6 +8,7 @@
 
 library(dplyr)
 library(flora)
+library(rocc)
 
 # reading file
 
@@ -20,25 +21,7 @@ tax_check <- filter(tax, check_ok == "checar")
 
 table(tax$check_ok)
 
-scientificName <- unique(tax_ok$scientificName_new)[1:20]
+scientificName <- unique(tax_ok$scientificName_new)[1]
 #scientificName <- unique(tax_check$scientificName_new)
 
-length(scientificName)
-
-trim_sp <- flora::trim(scientificName)
-suggest_sp <- sapply(trim_sp, flora::suggest.names)
-
-search_flora <- function(x){
-  api <- "http://servicos.jbrj.gov.br/flora/taxon/"
-  search_sp <- gsub(" ", "%20", x)
-  res <- jsonlite::fromJSON(paste0(api, x))
-  return(res)
-}
-
-res_list <- lapply(suggest_sp, search_flora)
-
-if (!is.null(res$result$SINONIMO)) {
-  sin.df <- res$result$SINONIMO[[1]]
-}
-# so os nomes
-sin.df$scientificname
+teste <- suggest_bfg(scientificName)
